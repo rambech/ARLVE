@@ -1,9 +1,28 @@
 import signal
 import sys
+import vehicles
 
 def main():
+    
+    # Reinforcement learning options 
+    rl = False 
 
-    while (True):
+
+    # Vehicle variables
+    vehicle = vehicles.Otter
+
+
+    # Simulating options
+    Simulating = True
+
+
+
+    while Simulating == True:
+        if rl == True:
+
+            step = 0
+
+
         
 
 
