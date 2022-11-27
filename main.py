@@ -1,6 +1,8 @@
 import signal
 import sys
 import vehicles
+import numpy as np
+from control import Control
 
 def main():
     
@@ -12,10 +14,12 @@ def main():
     vehicle = vehicles.Otter
 
 
+    # Initialize control
+    x = np.zeros(3,1)
+    controller = Control()
+
     # Simulating options
     Simulating = True
-
-
 
     while Simulating == True:
         if rl == True:
