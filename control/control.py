@@ -1,6 +1,9 @@
 import numpy as np
 
 class Control():
+    """
+    Takes vehicle, control choice and 
+    """
     def __init__(self, vehicle, control_choice = "PID", allocation_choice = "unconstrained"):
         self.allocation = allocation_choice
         self.control_choice = control_choice
@@ -8,7 +11,9 @@ class Control():
         self.int_x = np.zeros(3,1)
 
     def step(self, dt):
-        self.x = self.vehicle
+        tau = self.controller(dt)
+        u = self.allocation(tau)
+        self.x = self.vehicle.step(u, dt)
         
         pass
 
@@ -20,17 +25,24 @@ class Control():
         self.Kd = Kd
         self.Ki = Ki
 
-    def controller(self, tau_d):
+    def controller(self, dt):
         if self.control_choice == "PID":
             self.int_x = self.int_x + self.x[0:3]*dt
-            tau = -self.Kp*self.eta - self.Kd*self.nu - self.Ki*self.int_x
+            return -self.Kp*self.eta - self.Kd*self.nu - self.Ki*self.int_x
 
         elif self.control_choice == "DP":
             pass
 
+    def allocation(self, tau_d):
+        if self.allocation_choice == "unconstrained":
+            return self.unconstrained_allocation(tau_d)
+        
+        elif self.allocation_choice == "optimal":
+            pass
+
     def unconstrained_allocation(self, tau_d):
         B = self.vehicle.B_config
-        moore = B.T.dot(B.dot(B.T))
-        u = moore*tau_d
+        moore_penrose = B.T.dot(B.dot(B.T))
+        u = moore_penrose*tau_d
 
         return u

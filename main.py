@@ -1,8 +1,10 @@
 import signal
 import sys
 import vehicles
+import env
+import control
 import numpy as np
-from control import Control
+
 
 def main():
     
@@ -16,18 +18,21 @@ def main():
 
     # Initialize control
     x = np.zeros(3,1)
-    controller = Control()
+    controller = control.Control(vehicle)
+
+    # Initialize environment
+    environment = env.Ocean()
 
     # Simulating options
-    Simulating = True
+    N = 10000           # Number of samples
+    dt = 0.1            # Sample rate
 
-    while Simulating == True:
+    for n in N:
         if rl == True:
+            pass
 
-            step = 0
-
-
-        
+        else:
+            controller.step(dt)
 
 
 if __name__ == '__main__':
