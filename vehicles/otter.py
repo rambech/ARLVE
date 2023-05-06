@@ -1,4 +1,4 @@
-from vehicles import Vehicle
+from .vehicle import Vehicle
 from control import Utils
 import numpy as np
 

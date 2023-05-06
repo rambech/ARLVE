@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
-from env import Obstacle
+from .obstacle import Obstacle
 
 
 class Env():
@@ -12,13 +12,17 @@ class Env():
     def plot(self) -> None:
         obstacles = self.make_obstacles()
 
-        fig, ax = plt.subplots(figsize=(8, 8))
+        _, ax = plt.subplots(figsize=(8, 8))
+        ax.set_xlim(0, self.dimensions[0])
+        ax.set_ylim(0, self.dimensions[1])
+        ax.set_aspect("equal")
 
+        print(f"obstacles[0] {obstacles[0].x}")
         for obstacle in obstacles:
             ax.add_patch(Rectangle((obstacle.x, obstacle.y),
                          obstacle.width, obstacle.height))
 
-        plt.plot
+        plt.show()
 
     def make_obstacles(self) -> list:
         obstacles = []

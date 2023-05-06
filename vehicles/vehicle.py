@@ -2,7 +2,7 @@ import numpy as np
 from control import Utils
 
 class Vehicle():
-    def __init__(self, init_x = np.zeros(3,1)):
+    def __init__(self, init_x = np.zeros((3,1))):
         g = 9.81    # Gravity [m/s^2]
         self.x = init_x
 

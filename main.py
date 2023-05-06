@@ -36,7 +36,7 @@ def main():
 
     environment = env.Parkinglot()
 
-    environment.plot
+    environment.plot()
 
 
 if __name__ == '__main__':
