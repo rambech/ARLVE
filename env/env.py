@@ -20,7 +20,7 @@ class Env():
         print(f"obstacles[0] {obstacles[0].x}")
         for obstacle in obstacles:
             ax.add_patch(Rectangle((obstacle.x, obstacle.y),
-                         obstacle.width, obstacle.height))
+                         obstacle.width, obstacle.height, fc="teal", ec="k"))
 
         plt.show()
 
